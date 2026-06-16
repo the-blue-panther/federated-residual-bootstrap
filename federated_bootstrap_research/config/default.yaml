@@ -1,0 +1,31 @@
+# Federated Residual Bootstrap Research - Default Configuration
+# Phase 0: Foundation
+
+# Reproducibility
+random_seed: 42
+
+# Data generation parameters
+sample_size: 1000          # Total number of observations (n)
+feature_dim: 5              # Number of features (p)
+
+# Regression coefficients (beta vector)
+beta:
+  - 2.5
+  - -1.8
+  - 3.2
+  - 0.5
+  - -0.7
+
+# Error standard deviation
+error_sigma: 1.5
+
+# Federated learning parameters
+num_sites: 3                # Number of federated sites
+
+# Partitioning configuration
+partitioning:
+  balanced: true           # If false, use unbalanced proportions below
+  unbalanced_proportions:   # Only used if balanced is false
+    - 0.5
+    - 0.3
+    - 0.2
