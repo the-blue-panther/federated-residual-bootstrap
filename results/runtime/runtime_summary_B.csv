@@ -1,0 +1,6 @@
+,avg_runtime_seconds,avg_runtime_seconds,avg_runtime_seconds,avg_runtime_seconds
+,mean,std,min,max
+B,,,,
+100,0.025,0.0091,0.0159,0.0492
+500,0.108,0.0413,0.0722,0.2092
+1000,0.2343,0.0882,0.149,0.4207
