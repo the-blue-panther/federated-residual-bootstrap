@@ -183,10 +183,12 @@ class CentralizedResidualBootstrap:
         self.ci_lower = np.percentile(
             self.bootstrap_betas,
             lower_percentile,
-            axis=0
+            axis=0,
+            keepdims=False
         )
         self.ci_upper = np.percentile(
             self.bootstrap_betas,
             upper_percentile,
-            axis=0
+            axis=0,
+            keepdims=False
         )
