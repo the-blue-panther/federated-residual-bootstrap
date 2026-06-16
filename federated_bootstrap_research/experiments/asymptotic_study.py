@@ -1,6 +1,7 @@
 """Asymptotic study for centralized residual bootstrap.
 
 Investigates bias, variance, MSE, and coverage as n increases.
+Supports multiple error distributions: iid, heavy_tailed, skewed, heteroscedastic.
 """
 
 import numpy as np
@@ -21,9 +22,10 @@ def run_asymptotic_study(
     beta: Optional[np.ndarray] = None,
     sigma: float = 1.5,
     n_bootstrap: int = 500,
-    n_mc: int = 100,
+    n_mc: int = 50,
     confidence_level: float = 0.95,
     random_state: Optional[int] = 42,
+    distribution: str = "iid",
     save_results: bool = True,
     results_dir: str = "results/asymptotic",
 ) -> Dict[str, Any]:
@@ -97,6 +99,7 @@ def run_asymptotic_study(
                 beta=beta,
                 sigma=sigma,
                 random_state=sim_seed,
+                distribution=distribution,
             )
             
             # Fit bootstrap
@@ -132,6 +135,7 @@ def run_asymptotic_study(
             "coverage": coverage,
             "avg_coverage": avg_coverage,
             "mean_bias": np.mean(bias),
+            "mean_absolute_bias": np.mean(np.abs(bias)),
             "mean_variance": np.mean(variance),
             "mean_mse": np.mean(mse),
         }
@@ -151,16 +155,20 @@ def run_asymptotic_study(
     for results in results_by_n:
         print(f"  {results['n']:5d} | {results['avg_coverage']:.4f}    | {results['mean_bias']:.6f} | {results['mean_mse']:.6f}")
     
-    # Validate
-    # Check if bias decreases and MSE decreases
-    bias_trend = all(results_by_n[i+1]['mean_bias'] < results_by_n[i]['mean_bias'] 
-                     for i in range(len(results_by_n)-1))
-    mse_trend = all(results_by_n[i+1]['mean_mse'] < results_by_n[i]['mean_mse'] 
-                    for i in range(len(results_by_n)-1))
+    # Validate using absolute bias
+    # Check if absolute bias decreases and MSE decreases
+    abs_bias_trend = all(
+        results_by_n[i+1]['mean_absolute_bias'] < results_by_n[i]['mean_absolute_bias'] 
+        for i in range(len(results_by_n)-1)
+    )
+    mse_trend = all(
+        results_by_n[i+1]['mean_mse'] < results_by_n[i]['mean_mse'] 
+        for i in range(len(results_by_n)-1)
+    )
     
     print(f"\n  Validation:")
-    print(f"    Bias decreasing: {'PASSED' if bias_trend else 'FAILED'}")
-    print(f"    MSE decreasing:  {'PASSED' if mse_trend else 'FAILED'}")
+    print(f"    Absolute bias decreasing: {'PASSED' if abs_bias_trend else 'FAILED'}")
+    print(f"    MSE decreasing:           {'PASSED' if mse_trend else 'FAILED'}")
     
     # Save results
     if save_results:
@@ -193,7 +201,7 @@ def run_asymptotic_study(
     
     return {
         "results_by_n": results_by_n,
-        "bias_trend": bias_trend,
+        "abs_bias_trend": abs_bias_trend,
         "mse_trend": mse_trend,
     }
 

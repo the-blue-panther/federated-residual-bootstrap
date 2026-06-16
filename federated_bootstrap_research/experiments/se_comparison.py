@@ -23,6 +23,7 @@ def run_se_comparison(
     n_bootstrap: int = 500,
     n_mc: int = 100,
     random_state: Optional[int] = 42,
+    distribution: str = "iid",
     save_results: bool = True,
     results_dir: str = "results/se_comparison",
 ) -> Dict[str, Any]:
@@ -90,6 +91,7 @@ def run_se_comparison(
             beta=beta,
             sigma=sigma,
             random_state=sim_seed,
+            distribution=distribution,
         )
         
         # Fit bootstrap
@@ -172,7 +174,7 @@ def run_se_comparison(
             "relative_error": relative_errors,
             "relative_error_pct": relative_errors * 100,
         })
-        summary_path = results_path / f"se_comparison_n_{n}.csv"
+        summary_path = results_path / f"se_comparison_{distribution}_n_{n}.csv"
         summary_df.to_csv(summary_path, index=False)
         print(f"\n  Summary saved to: {summary_path}")
         
@@ -182,7 +184,7 @@ def run_se_comparison(
             **{f"bootstrap_se_{j}": bootstrap_se[:, j] for j in range(p)},
             **{f"theoretical_se_{j}": theoretical_se[:, j] for j in range(p)},
         })
-        detailed_path = results_path / f"se_comparison_detailed_n_{n}.csv"
+        detailed_path = results_path / f"se_comparison_{distribution}_detailed_n_{n}.csv"
         detailed_df.to_csv(detailed_path, index=False)
         print(f"  Detailed results saved to: {detailed_path}")
     

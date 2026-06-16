@@ -24,6 +24,7 @@ def run_coverage_study(
     n_mc: int = 1000,
     confidence_level: float = 0.95,
     random_state: Optional[int] = 42,
+    distribution: str = "iid",
     save_results: bool = True,
     results_dir: str = "results/coverage",
 ) -> Dict[str, Any]:
@@ -97,6 +98,7 @@ def run_coverage_study(
             beta=beta,
             sigma=sigma,
             random_state=sim_seed,
+            distribution=distribution,
         )
         
         # Fit bootstrap
@@ -186,7 +188,7 @@ def run_coverage_study(
             "mse": mse,
             "coverage": coverage,
         })
-        summary_path = results_path / "coverage_summary.csv"
+        summary_path = results_path / f"coverage_{distribution}_summary.csv"
         summary_df.to_csv(summary_path, index=False)
         print(f"\n  Summary saved to: {summary_path}")
         
@@ -197,7 +199,7 @@ def run_coverage_study(
             **{f"ci_lower_{j}": ci_lower_all[:, j] for j in range(p)},
             **{f"ci_upper_{j}": ci_upper_all[:, j] for j in range(p)},
         })
-        detailed_path = results_path / "coverage_detailed.csv"
+        detailed_path = results_path / f"coverage_{distribution}_detailed.csv"
         detailed_df.to_csv(detailed_path, index=False)
         print(f"  Detailed results saved to: {detailed_path}")
     

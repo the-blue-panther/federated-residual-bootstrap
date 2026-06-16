@@ -62,6 +62,8 @@ class CentralizedResidualBootstrap:
         # Attributes to be set during fit
         self.beta_hat = None
         self.residuals = None
+        self.residual_mean = None
+        self.centered_residuals = None
         self.y_hat = None
         self.bootstrap_betas = None
         self.bootstrap_se = None
@@ -115,29 +117,33 @@ class CentralizedResidualBootstrap:
             "bootstrap_se": self.bootstrap_se,
             "ci_lower": self.ci_lower,
             "ci_upper": self.ci_upper,
+            "residual_mean": self.residual_mean,
+            "centered_residuals": self.centered_residuals,
         }
     
     def _fit_ols(self) -> None:
         """
-        Fit OLS using the normal equations.
+        Fit OLS using the normal equations with numerically stable solver.
         
-        Computes: beta_hat = (X'X)^(-1) X'y
+        Computes: beta_hat = solve(X'X, X'y)
         """
         XTX = self.X.T @ self.X
         XTy = self.X.T @ self.y
-        self.beta_hat = np.linalg.inv(XTX) @ XTy
+        self.beta_hat = np.linalg.solve(XTX, XTy)
     
     def _compute_residuals(self) -> None:
-        """Compute residuals and fitted values from OLS fit."""
+        """Compute residuals, fitted values, and centered residuals from OLS fit."""
         self.y_hat = self.X @ self.beta_hat
         self.residuals = self.y - self.y_hat
+        self.residual_mean = np.mean(self.residuals)
+        self.centered_residuals = self.residuals - self.residual_mean
     
     def _bootstrap_loop(self) -> None:
         """
-        Perform bootstrap iterations.
+        Perform bootstrap iterations using centered residuals.
         
         For each iteration:
-        1. Sample residuals with replacement
+        1. Sample centered residuals with replacement
         2. Generate y_star = y_hat + e_star
         3. Refit OLS to get beta_star
         """
@@ -147,16 +153,16 @@ class CentralizedResidualBootstrap:
         self.bootstrap_betas = np.zeros((self.n_bootstrap, p))
         
         for i in range(self.n_bootstrap):
-            # Sample residuals with replacement
-            e_star = self.rng.choice(self.residuals, size=n, replace=True)
+            # Sample centered residuals with replacement
+            e_star = self.rng.choice(self.centered_residuals, size=n, replace=True)
             
             # Generate bootstrap response
             y_star = self.y_hat + e_star
             
-            # Refit OLS
+            # Refit OLS using numerically stable solver
             XTX = self.X.T @ self.X
             XTy_star = self.X.T @ y_star
-            beta_star = np.linalg.inv(XTX) @ XTy_star
+            beta_star = np.linalg.solve(XTX, XTy_star)
             
             self.bootstrap_betas[i, :] = beta_star
     
