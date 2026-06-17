@@ -9,7 +9,7 @@
 ### 1.1 Algorithm Overview
 
 ```mermaid
-flowchart TD
+graph TD
     A[Start] --> B[Fit OLS on full data]
     B --> C[Compute residuals e = y - y_hat]
     C --> D[Center residuals]
@@ -108,7 +108,7 @@ $$CI_j = [Q_{\alpha/2}(\hat{\beta}^*_j), Q_{1-\alpha/2}(\hat{\beta}^*_j)]$$
 ### 2.1 Algorithm Overview
 
 ```mermaid
-flowchart TD
+graph TD
     A[Start] --> B[Federated OLS: compute beta_hat]
     B --> C[Send beta_hat to all sites]
     C --> D[Each site m: compute y_hat_m, e_m]
@@ -169,11 +169,7 @@ flowchart TD
 
 **Key Point:** The output contains ONE global bootstrap distribution `bootstrap_betas` of shape `(B, p)`, just like the centralized bootstrap.
 
-### 2.5 Critical Clarification: How ONE Global Distribution is Produced
-
-A common point of confusion is thinking that the Local Residual Bootstrap produces $M$ separate distributions (one per site). This is **INCORRECT**.
-
-**What actually happens:**
+### 2.5 How ONE Global Distribution is Produced
 
 ```mermaid
 sequenceDiagram
