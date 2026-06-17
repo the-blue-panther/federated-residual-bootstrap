@@ -11,11 +11,11 @@ The project investigates whether classical residual bootstrap procedures can be 
 
 **Central Research Question:**
 
-$$\mathcal{L}(\hat{\beta}_{Fed}^{*}) \overset{?}{\approx} \mathcal{L}(\hat{\beta}_{Central}^{*})$$
+$$\mathcal{L}(\hat{\beta}_{Fed}^{\ast}) \overset{?}{\approx} \mathcal{L}(\hat{\beta}_{Central}^{\ast})$$
 
 where:
-- $\hat{\beta}_{Fed}^{*}$: Bootstrap estimator under federation
-- $\hat{\beta}_{Central}^{*}$: Bootstrap estimator from fully pooled data
+- $\hat{\beta}_{Fed}^{\ast}$: Bootstrap estimator under federation
+- $\hat{\beta}_{Central}^{\ast}$: Bootstrap estimator from fully pooled data
 - $\mathcal{L}$: Sampling distribution
 
 ### 1.2 Why This Matters
