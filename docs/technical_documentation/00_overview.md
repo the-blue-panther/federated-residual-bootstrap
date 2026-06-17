@@ -204,4 +204,70 @@ $$D_{KS} = \sup_x |F_{Fed}(x) - F_{Central}(x)|$$
 
 ---
 
+## 5. Results and Plots
+
+### 5.1 Diagnostic Plots
+
+The following diagnostic plots show the bootstrap distribution for each coefficient, including histograms with normal overlay, QQ plots, and density comparisons.
+
+#### Beta 0 Diagnostics
+
+![Beta 0 Diagnostics](../../results/diagnostics/beta_0_diagnostics.png)
+
+#### Beta 1 Diagnostics
+
+![Beta 1 Diagnostics](../../results/diagnostics/beta_1_diagnostics.png)
+
+#### Beta 2 Diagnostics
+
+![Beta 2 Diagnostics](../../results/diagnostics/beta_2_diagnostics.png)
+
+#### Beta 3 Diagnostics
+
+![Beta 3 Diagnostics](../../results/diagnostics/beta_3_diagnostics.png)
+
+#### Beta 4 Diagnostics
+
+![Beta 4 Diagnostics](../../results/diagnostics/beta_4_diagnostics.png)
+
+### 5.2 Key Results Summary
+
+| Metric | Value | Status |
+|--------|-------|--------|
+| Average Coverage | 0.9476 | ✅ PASSED (within [0.93, 0.97]) |
+| SE Relative Error | 0.35% | ✅ PASSED (< 10%) |
+| Wasserstein at n=10000 | 0.001206 | ✅ PASSED (decreasing) |
+| Site Imbalance Coverage | 0.944-0.948 | ✅ PASSED (stable) |
+| Site Count Coverage | 0.940-0.967 | ✅ PASSED (stable) |
+
+### 5.3 Result Directories
+
+| Directory | Contents |
+|-----------|----------|
+| `results/coverage/` | Coverage study results (CSV) |
+| `results/se_comparison/` | SE comparison results (CSV) |
+| `results/asymptotic/` | Asymptotic study results (CSV) |
+| `results/diagnostics/` | Diagnostic plots (PNG) |
+| `results/runtime/` | Runtime benchmark results (CSV) |
+| `results/phase2/` | Phase 2 experimental results |
+| `results/phase_2_validation/` | Phase 2.25 validation results |
+| `results/phase_2_5_validation/` | Phase 2.5 heterogeneity results |
+| `results/phase_2_75_audit/` | Phase 2.75 audit results |
+
+### 5.4 Generating Plots
+
+To generate diagnostic plots for the bootstrap distribution:
+
+```bash
+python -m federated_bootstrap_research.experiments.bootstrap_distribution_diagnostics
+```
+
+To generate convergence plots:
+
+```bash
+python -m federated_bootstrap_research.visualization.convergence_plots
+```
+
+---
+
 *Last Updated: 2026-06-17*

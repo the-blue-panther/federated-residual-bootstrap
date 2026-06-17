@@ -280,7 +280,57 @@ This document describes all experiments conducted in the project.
 
 ---
 
-## 7. Experiment Summary
+## 7. Generated Plots
+
+### 7.1 Diagnostic Plots
+
+The following diagnostic plots show the bootstrap distribution for each coefficient:
+
+#### Beta 0 Diagnostics
+
+![Beta 0 Diagnostics](../../results/diagnostics/beta_0_diagnostics.png)
+
+#### Beta 1 Diagnostics
+
+![Beta 1 Diagnostics](../../results/diagnostics/beta_1_diagnostics.png)
+
+#### Beta 2 Diagnostics
+
+![Beta 2 Diagnostics](../../results/diagnostics/beta_2_diagnostics.png)
+
+#### Beta 3 Diagnostics
+
+![Beta 3 Diagnostics](../../results/diagnostics/beta_3_diagnostics.png)
+
+#### Beta 4 Diagnostics
+
+![Beta 4 Diagnostics](../../results/diagnostics/beta_4_diagnostics.png)
+
+### 7.2 Plot Generation Commands
+
+```bash
+# Generate bootstrap distribution diagnostics
+python -m federated_bootstrap_research.experiments.bootstrap_distribution_diagnostics
+
+# Generate convergence plots
+python -m federated_bootstrap_research.visualization.convergence_plots
+```
+
+### 7.3 Result CSV Files
+
+| Directory | Contents |
+|-----------|----------|
+| `results/coverage/` | Coverage study results |
+| `results/se_comparison/` | SE comparison results |
+| `results/asymptotic/` | Asymptotic study results |
+| `results/runtime/` | Runtime benchmark results |
+| `results/diagnostics/` | Diagnostic plots |
+| `results/phase2/` | Phase 2 experimental results |
+| `results/phase_2_validation/` | Phase 2.25 validation results |
+| `results/phase_2_5_validation/` | Phase 2.5 heterogeneity results |
+| `results/phase_2_75_audit/` | Phase 2.75 audit results |
+
+---
 
 | Experiment | Purpose | Status |
 |------------|---------|--------|
