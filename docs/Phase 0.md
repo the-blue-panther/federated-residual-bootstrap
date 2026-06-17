@@ -12,9 +12,9 @@ The long-term objective is to determine whether uncertainty quantification metho
 Specifically, we seek to investigate whether
 
 $$
-\mathcal L(\hat\beta^*_{Fed})
+\mathcal L(\hat\beta^{*}_{Fed})
 \approx
-\mathcal L(\hat\beta^*_{Central})
+\mathcal L(\hat\beta^{*}_{Central})
 $$
 
 under appropriate assumptions.
