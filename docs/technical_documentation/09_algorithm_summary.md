@@ -122,14 +122,42 @@ For $b = 1$ to $B$:
 1. For each site $m$:
    - Sample $e^*_m$ from $\tilde{e}_m$
    - $y^*_m = \hat{y}_m + e^*_m$
-2. Run federated OLS on $\{X_m, y^*_m\}$
-3. Store $\hat{\beta}^*$
+2. **Run federated OLS on ALL sites** $\{X_m, y^*_m\}$
+3. **Store ONE global** $\hat{\beta}^*$ **per iteration**
 
-### 6.4 Output
+### 6.4 Critical Clarification: ONE Global Distribution
+
+**Common Misunderstanding:** Each site produces its own distribution.
+
+**Actual Behavior:** The server aggregates all sites' bootstrap statistics in EACH iteration, producing ONE global bootstrap distribution.
+
+```
+Iteration b = 1:
+  Site 1 → (X_1, y*_{1,1}) → XTX_1, XTy_1
+  Site 2 → (X_2, y*_{2,1}) → XTX_2, XTy_2
+  Site 3 → (X_3, y*_{3,1}) → XTX_3, XTy_3
+                    ↓
+         Server aggregates → XTX, XTy → beta*_1 ← ONE global
+
+Iteration b = 2:
+  Site 1 → (X_1, y*_{1,2}) → XTX_1, XTy_1
+  Site 2 → (X_2, y*_{2,2}) → XTX_2, XTy_2
+  Site 3 → (X_3, y*_{3,2}) → XTX_3, XTy_3
+                    ↓
+         Server aggregates → XTX, XTy → beta*_2 ← ONE global
+
+... repeat B times ...
+
+Result: ONE global distribution: {beta*_1, beta*_2, ..., beta*_B}
+```
+
+### 6.5 Output
 
 $$\text{SE}_{Local} = \text{sd}(\hat{\beta}^*)$$
 
 $$CI_{Local} = [Q_{\alpha/2}(\hat{\beta}^*), Q_{1-\alpha/2}(\hat{\beta}^*)]$$
+
+**Both centralized and local bootstrap produce ONE global distribution of shape (B, p).**
 
 ---
 
