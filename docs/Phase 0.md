@@ -12,9 +12,9 @@ The long-term objective is to determine whether uncertainty quantification metho
 Specifically, we seek to investigate whether
 
 $$
-\mathcal L(\hat\beta^{*}_{Fed})
+\mathcal L(\hat\beta^{\*}_{Fed})
 \approx
-\mathcal L(\hat\beta^{*}_{Central})
+\mathcal L(\hat\beta^{\*}_{Central})
 $$
 
 under appropriate assumptions.
@@ -47,9 +47,9 @@ across sites.
 Can a residual bootstrap procedure be performed in a federated setting such that
 
 $$
-\hat\beta^*_{Fed}
+\hat\beta^\*_{Fed}
 \overset{d}{\approx}
-\hat\beta^*_{Central}
+\hat\beta^\*_{Central}
 $$
 
 while preserving privacy?
@@ -80,7 +80,7 @@ The centralized residual bootstrap serves as the gold standard.
 Every federated method will be evaluated relative to:
 
 $$
-\hat\beta^*_{Central}
+\hat\beta^\*_{Central}
 $$
 
 rather than relative to analytic asymptotic approximations.
@@ -142,7 +142,7 @@ How much information is required to reconstruct the global residual distribution
 Construct
 
 $$
-e_i^*
+e_i^\*
 =
 w_i e_i
 $$
@@ -161,7 +161,7 @@ $$
 
 Question:
 
-Can multiplier weighting replace residual resampling?
+Can multiplier weighting replace residual resampling? $\displaystyle\int f(x)  dx= F(x)+c$
 
 ---
 
