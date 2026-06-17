@@ -10,7 +10,7 @@ $$F_{e,1} \neq F_{e,2} \neq \cdots \neq F_{e,M}$$
 
 Can we still observe:
 
-$$\mathcal{L}(\hat{\beta}_{Local}^*) \approx \mathcal{L}(\hat{\beta}_{Central}^*)?$$
+$$\mathcal{L}(\hat{\beta}_{Local}^\*) \approx \mathcal{L}(\hat{\beta}_{Central}^\*)?$$
 
 ---
 
@@ -206,7 +206,7 @@ $$\mathcal{L}(\hat{\beta}_{Local}^*) \approx \mathcal{L}(\hat{\beta}_{Central}^*
 
 ## 7. Mathematical Summary
 
-$$\mathcal{L}(\hat{\beta}_{Local}^*) \approx \mathcal{L}(\hat{\beta}_{Central}^*)$$
+$$\mathcal{L}(\hat{\beta}_{Local}^\*) \approx \mathcal{L}(\hat{\beta}_{Central}^\*)$$
 
 Even when:
 

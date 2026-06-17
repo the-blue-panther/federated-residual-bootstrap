@@ -103,7 +103,7 @@ centered_residuals = residuals - residual_mean
 
 Bootstrap responses are generated as:
 
-$$y^*_{im} = x_{im}^T\hat{\beta} + e^*_{im}$$
+$$y^\*_{im} = x_{im}^T\hat{\beta} + e^\*_{im}$$
 
 Implementation:
 ```python
@@ -184,7 +184,7 @@ Distributions are genuinely different.
 
 Wasserstein distance is computed on bootstrap distributions:
 
-$$W(\hat{\beta}_{Local}^*, \hat{\beta}_{Central}^*)$$
+$$W(\hat{\beta}_{Local}^\*, \hat{\beta}_{Central}^\*)$$
 
 The implementation correctly handles both 1D and 2D inputs and uses `scipy.stats.wasserstein_distance`.
 
@@ -266,7 +266,7 @@ The centralized bootstrap is truly independent.
 | Residual Computation | ✅ PASSED | Correctly computes local residuals |
 | Residual Pool Isolation | ✅ PASSED | No cross-site access |
 | Residual Centering | ✅ PASSED | Correctly centers residuals |
-| Bootstrap Response | ✅ PASSED | Correctly generates $y^*$ |
+| Bootstrap Response | ✅ PASSED | Correctly generates $y^\*$ |
 | Refitting | ✅ PASSED | Full federated regression |
 | Heterogeneity Generators | ✅ PASSED | All scenarios correct |
 | Wasserstein Metric | ✅ PASSED | Computed on distributions |
@@ -307,7 +307,7 @@ The centralized bootstrap is truly independent.
 
 The evidence supports the claim:
 
-$$\mathcal{L}(\hat{\beta}_{Local}^*) \approx \mathcal{L}(\hat{\beta}_{Central}^*)$$
+$$\mathcal{L}(\hat{\beta}_{Local}^\*) \approx \mathcal{L}(\hat{\beta}_{Central}^\*)$$
 
 ---
 

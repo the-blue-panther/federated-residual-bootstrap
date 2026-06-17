@@ -70,16 +70,16 @@ $$e = y - \hat{y}$$
 $$\tilde{e}_i = e_i - \bar{e}$$
 
 **Bootstrap response:**
-$$y_i^* = \hat{y}_i + \tilde{e}_i^*$$
+$$y_i^\* = \hat{y}_i + \tilde{e}_i^\*$$
 
 **Bootstrap estimate:**
-$$\hat{\beta}^* = (X^TX)^{-1}X^Ty^*$$
+$$\hat{\beta}^\* = (X^TX)^{-1}X^Ty^\*$$
 
 **Standard errors:**
-$$SE_j = \text{sd}(\hat{\beta}^*_j)$$
+$$SE_j = \text{sd}(\hat{\beta}^\*_j)$$
 
 **Confidence intervals (percentile):**
-$$CI_j = [Q_{\alpha/2}(\hat{\beta}^*_j), Q_{1-\alpha/2}(\hat{\beta}^*_j)]$$
+$$CI_j = [Q_{\alpha/2}(\hat{\beta}^\*_j), Q_{1-\alpha/2}(\hat{\beta}^\*_j)]$$
 
 ### 1.5 Output
 
@@ -227,7 +227,7 @@ sequenceDiagram
 
 **After B iterations:** The server has ONE global bootstrap distribution:
 
-$$\{\hat{\beta}^*_1, \hat{\beta}^*_2, \ldots, \hat{\beta}^*_B\} \quad \text{shape: } (B, p)$$
+$$\{\hat{\beta}^\*_1, \hat{\beta}^\*_2, \ldots, \hat{\beta}^\*_B\} \quad \text{shape: } (B, p)$$
 
 ### 2.6 Key Differences from Centralized
 
@@ -321,19 +321,19 @@ So at the end, `self.bootstrap_betas` is a single `(B, p)` matrix — ONE global
 
 **Research Question:**
 
-$$\mathcal{L}(\hat{\beta}_{Local}^*) \overset{?}{\approx} \mathcal{L}(\hat{\beta}_{Central}^*)$$
+$$\mathcal{L}(\hat{\beta}_{Local}^\*) \overset{?}{\approx} \mathcal{L}(\hat{\beta}_{Central}^\*)$$
 
 **Both produce ONE global distribution, so they can be directly compared!**
 
 | Method | Distribution | Shape |
 |--------|--------------|-------|
-| Centralized | $\{\hat{\beta}^*_{Central,1}, \ldots, \hat{\beta}^*_{Central,B}\}$ | (B, p) |
-| Local | $\{\hat{\beta}^*_{Local,1}, \ldots, \hat{\beta}^*_{Local,B}\}$ | (B, p) |
+| Centralized | $\{\hat{\beta}^\*_{Central,1}, \ldots, \hat{\beta}^\*_{Central,B}\}$ | (B, p) |
+| Local | $\{\hat{\beta}^\*_{Local,1}, \ldots, \hat{\beta}^\*_{Local,B}\}$ | (B, p) |
 
 **We can directly compare:**
 - Coverage: Does Local CI contain $\beta$ as often as Centralized CI?
-- Wasserstein: $W(\hat{\beta}_{Local}^*, \hat{\beta}_{Central}^*)$
-- KS: $D_{KS}(\hat{\beta}_{Local}^*, \hat{\beta}_{Central}^*)$
+- Wasserstein: $W(\hat{\beta}_{Local}^\*, \hat{\beta}_{Central}^\*)$
+- KS: $D_{KS}(\hat{\beta}_{Local}^\*, \hat{\beta}_{Central}^\*)$
 - Bias: $E[\hat{\beta}_{Local}]$ vs $E[\hat{\beta}_{Central}]$
 - MSE: $E[(\hat{\beta}_{Local} - \beta)^2]$ vs $E[(\hat{\beta}_{Central} - \beta)^2]$
 
@@ -361,7 +361,7 @@ $$\mathcal{L}(\hat{\beta}_{Local}^*) \overset{?}{\approx} \mathcal{L}(\hat{\beta
 
 As $n \to \infty$:
 
-$$W(\hat{\beta}_{Local}^*, \hat{\beta}_{Central}^*) \to 0$$
+$$W(\hat{\beta}_{Local}^\*, \hat{\beta}_{Central}^\*) \to 0$$
 
 | n | Wasserstein |
 |---|-------------|
@@ -407,7 +407,7 @@ e_star = np.random.choice(residuals, size=n, replace=True)
 
 **Percentile Method:**
 
-$$CI = [Q_{\alpha/2}(\hat{\beta}^*), Q_{1-\alpha/2}(\hat{\beta}^*)]$$
+$$CI = [Q_{\alpha/2}(\hat{\beta}^\*), Q_{1-\alpha/2}(\hat{\beta}^\*)]$$
 
 **Implementation:**
 

@@ -88,16 +88,16 @@ $$\tilde{e}_i = e_i - \bar{e}$$
 
 For $b = 1$ to $B$:
 
-1. Sample $e^*$ with replacement from $\tilde{e}$
-2. $y^* = \hat{y} + e^*$
-3. $\hat{\beta}^* = (X^TX)^{-1}X^Ty^*$
-4. Store $\hat{\beta}^*$
+1. Sample $e^\*$ with replacement from $\tilde{e}$
+2. $y^\* = \hat{y} + e^\*$
+3. $\hat{\beta}^\* = (X^TX)^{-1}X^Ty^\*$
+4. Store $\hat{\beta}^\*$
 
 ### 5.4 Output
 
-$$\text{SE} = \text{sd}(\hat{\beta}^*)$$
+$$\text{SE} = \text{sd}(\hat{\beta}^\*)$$
 
-$$CI = [Q_{\alpha/2}(\hat{\beta}^*), Q_{1-\alpha/2}(\hat{\beta}^*)]$$
+$$CI = [Q_{\alpha/2}(\hat{\beta}^\*), Q_{1-\alpha/2}(\hat{\beta}^\*)]$$
 
 ---
 
@@ -120,10 +120,10 @@ $$\tilde{e}_m = e_m - \bar{e}_m$$
 For $b = 1$ to $B$:
 
 1. For each site $m$:
-   - Sample $e^*_m$ from $\tilde{e}_m$
-   - $y^*_m = \hat{y}_m + e^*_m$
-2. **Run federated OLS on ALL sites** $\{X_m, y^*_m\}$
-3. **Store ONE global** $\hat{\beta}^*$ **per iteration**
+   - Sample $e^\*_m$ from $\tilde{e}_m$
+   - $y^\*_m = \hat{y}_m + e^\*_m$
+2. **Run federated OLS on ALL sites** $\{X_m, y^\*_m\}$
+3. **Store ONE global** $\hat{\beta}^\*$ **per iteration**
 
 ### 6.4 Critical Clarification: ONE Global Distribution
 
@@ -153,9 +153,9 @@ Result: ONE global distribution: {beta*_1, beta*_2, ..., beta*_B}
 
 ### 6.5 Output
 
-$$\text{SE}_{Local} = \text{sd}(\hat{\beta}^*)$$
+$$\text{SE}_{Local} = \text{sd}(\hat{\beta}^\*)$$
 
-$$CI_{Local} = [Q_{\alpha/2}(\hat{\beta}^*), Q_{1-\alpha/2}(\hat{\beta}^*)]$$
+$$CI_{Local} = [Q_{\alpha/2}(\hat{\beta}^\*), Q_{1-\alpha/2}(\hat{\beta}^\*)]$$
 
 **Both centralized and local bootstrap produce ONE global distribution of shape (B, p).**
 
@@ -177,7 +177,7 @@ $$\text{MSE} = E[(\hat{\beta} - \beta)^2]$$
 
 ### 7.4 Wasserstein Distance
 
-$$W(\hat{\beta}_{Local}^*, \hat{\beta}_{Central}^*)$$
+$$W(\hat{\beta}_{Local}^\*, \hat{\beta}_{Central}^\*)$$
 
 ### 7.5 KS Distance
 
@@ -225,7 +225,7 @@ Validation
 
 ### 10.1 Convergence
 
-$$W(\hat{\beta}_{Local}^*, \hat{\beta}_{Central}^*) \to 0$$
+$$W(\hat{\beta}_{Local}^\*, \hat{\beta}_{Central}^\*) \to 0$$
 
 as $n \to \infty$
 
@@ -269,7 +269,7 @@ under all tested conditions.
 | $\alpha$ | Significance level |
 | $\beta$ | True coefficients |
 | $\hat{\beta}$ | Estimated coefficients |
-| $\hat{\beta}^*$ | Bootstrap coefficients |
+| $\hat{\beta}^\*$ | Bootstrap coefficients |
 | $X$ | Feature matrix |
 | $y$ | Response vector |
 | $e$ | Residuals |
