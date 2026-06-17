@@ -126,7 +126,8 @@ def run_site_imbalance_study(
                 print(f"  Completed {i + 1} / {n_mc} simulations")
             
             # Generate data
-            sim_seed = (random_state + hash(scenario_name) + i * 1000) if random_state is not None else None
+            scenario_seed = abs(hash(scenario_name)) % 100000
+            sim_seed = (random_state + scenario_seed + i * 1000) if random_state is not None else None
             X, y = generate_dataset(
                 n=n_total,
                 p=p,
