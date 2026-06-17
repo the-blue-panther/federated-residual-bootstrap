@@ -230,7 +230,7 @@ This document summarizes all validation results from Phases 1.5 through 2.75.
 
 ## 9. Mathematical Summary
 
-$$\mathcal{L}(\hat{\beta}_{Local}^\*) \approx \mathcal{L}(\hat{\beta}_{Central}^\*)$$
+$$\mathcal{L}(\hat{\beta}_{Local}^{\ast}) \approx \mathcal{L}(\hat{\beta}_{Central}^{\ast})$$
 
 Supported by evidence from all validation experiments.
 

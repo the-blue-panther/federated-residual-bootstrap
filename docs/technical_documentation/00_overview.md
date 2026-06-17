@@ -169,10 +169,10 @@ $$e = y - \hat{y}$$
 $$\tilde{e}_i = e_i - \bar{e}$$
 
 **Bootstrap response:**
-$$y_i^\* = \hat{y}_i + \tilde{e}_i^\*$$
+$$y_i^{\ast} = \hat{y}_i + \tilde{e}_i^{\ast}$$
 
 **Bootstrap estimate:**
-$$\hat{\beta}^\* = \text{solve}(X^TX, X^Ty^\*)$$
+$$\hat{\beta}^{\ast} = \text{solve}(X^TX, X^Ty^{\ast})$$
 
 ### 3.5 Evaluation Metrics
 
@@ -186,7 +186,7 @@ $$\text{Bias} = E[\hat{\beta}] - \beta$$
 $$\text{MSE} = E[(\hat{\beta} - \beta)^2]$$
 
 **Wasserstein Distance:**
-$$W(\hat{\beta}_{Fed}^\*, \hat{\beta}_{Central}^\*)$$
+$$W(\hat{\beta}_{Fed}^{\ast}, \hat{\beta}_{Central}^{\ast})$$
 
 **KS Distance:**
 $$D_{KS} = \sup_x |F_{Fed}(x) - F_{Central}(x)|$$
